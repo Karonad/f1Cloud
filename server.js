@@ -7,9 +7,6 @@ const { resolve } = require('path'),
     bodyParser = require('body-parser');
 global.fetch = require('node-fetch');
 
-require('dotenv').config({ path: resolve(__dirname, './server/config/' + process.env.NODE_ENV.trim() + '/.env') });
-console.log('Server environment : ' + process.env.NODE_ENV.trim());
-
 
 //set up variable for express and mongoose
 let app = express(),
@@ -21,11 +18,6 @@ const option = {
     useNewUrlParser: true,
     useUnifiedTopology: true
     };
-// mongoose instance connection url connection
-    mongoose.Promise = global.Promise;
-    console.log('try the connection');
-    mongoose.connect( process.env.DB_HOST.trim(), option);
-
 
 //config cors
 var corsOptions = {
@@ -46,18 +38,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-//Load models
-let Test = require('./server/api/models/testModel');
-let Quiz = require('./server/api/models/quizModel');
-let Signin = require('./server/api/models/signModel');
-
 //importing routes
-let testRoutes = require('./server/api/routes/testRoutes');
-let quizRoutes = require('./server/api/routes/quizRoutes');
-let signRoutes = require('./server/api/routes/signRoutes');
-testRoutes(app);
-quizRoutes(app);
-signRoutes(app);
+let laMetricRoutes = require('./server/api/routes/laMetricRoutes');
+laMetricRoutes(app);
 
 
 app.use(function(req, res) {
