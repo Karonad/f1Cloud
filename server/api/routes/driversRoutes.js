@@ -5,5 +5,5 @@ module.exports = function(app) {
 
         // todoList Routes
         app.route('/drivers')
-        .get(drivers.listAllDrivers)
+        .get(drivers.getData)
 };
