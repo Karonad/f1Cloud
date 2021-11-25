@@ -17,12 +17,13 @@ exports.getConstructorRanking = function () {
                 resp.on('end', () => {
                     try {
                         data = JSON.parse(json);
-                        data = data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings
-                        data.forEach(element => {
-                            let text = element.position + '. ' + element.Constructor.name  + ' ' + '('+element.points+')'  
+                        data = data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
+                        for (let constructors = 0; constructors < 5; constructors++) {
+                            let constructor = data[constructors];
+                            let text = constructor.position + '. ' + constructor.Constructor.name  + ' ' + '('+constructor.points+')'  
                             ranking.push(text)
-                        });
-                        resolve(ranking.slice(0, 5))
+                        };
+                        resolve(ranking.join("   "))
                     } catch (error) {
                         console.error(error)
                     }
