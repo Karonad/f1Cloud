@@ -26,7 +26,7 @@ exports.listAllDrivers = function (req, res) {
                     let tmp = " " + driver.position + ". " + driver.Driver.givenName + " " + driver.Driver.familyName + " (" + driver.points + "p)";
                     concatString.push(tmp);
                 }
-                resolve(concatString.join("  "));
+                resolve(concatString);
             });
         }).on("error", (err) => {
             console.log("Error: " + err.message);

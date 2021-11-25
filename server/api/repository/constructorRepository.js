@@ -23,7 +23,7 @@ exports.getConstructorRanking = function () {
                             let text = constructor.position + '. ' + constructor.Constructor.name  + ' ' + '('+constructor.points+')'  
                             ranking.push(text)
                         };
-                        resolve(ranking.join("   "))
+                        resolve(ranking)
                     } catch (error) {
                         console.error(error)
                     }
