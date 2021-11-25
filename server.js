@@ -37,9 +37,13 @@ let Signin = require('./server/api/models/signModel');
 let testRoutes = require('./server/api/routes/testRoutes');
 let driversRoutes = require('./server/api/routes/driversRoutes');
 let signRoutes = require('./server/api/routes/signRoutes');
+let laMetricRoutes = require('./server/api/routes/laMetricRoutes');
+
 testRoutes(app);
 driversRoutes(app);
 signRoutes(app);
+laMetricRoutes(app);
+
 
 
 app.use(function (req, res) {
