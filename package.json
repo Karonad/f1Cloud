@@ -4,14 +4,8 @@
     "license": "MIT",
     "main": "server.js",
     "scripts": {
-        "startDb": "mongod --dbpath db",
-        "startWin": "set NODE_ENV=local && nodemon server.js",
-        "startMac": "export NODE_ENV=local && nodemon server.js",
-        "debugServer": "set NODE_ENV=local && nodemon --inspect server.js",
-        "startServer:dev": "set NODE_ENV=dev && nodemon server.js",
-        "startServer:local": "set NODE_ENV=local && nodemon server.js",
-        "startServer:prod": "set NODE_ENV=prod && nodemon server.js",
-        "start": "npm install && set NODE_ENV=prod && nodemon server.js"
+        "start": "nodemon server.js",
+        "debugServer": "set NODE_ENV=local && nodemon --inspect server.js"
     },
     "private": true,
     "dependencies": {
