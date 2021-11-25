@@ -1,6 +1,7 @@
 
 let driversRepo = require('../repository/driversRepository.js');
 let constructorRepo = require('../repository/constructorRepository');
+let eventRepo = require('../repository/eventRepository');
 
 exports.getData = function(req, res) {
     let data = {
@@ -12,7 +13,11 @@ exports.getData = function(req, res) {
         constructorRepo.getConstructorRanking().then(constructors => {
             let tmpC = {"text": constructors, "icon": 12755};
             data.frames.push(tmpC);
-            res.json(data);
+            eventRepo.getNextGp().then(nextGp => {
+                let tmpNgp = { "text": nextGp, "icon": 12755 };
+                data.frames.push(tmpNgp)
+                res.json(data);
+            })
         });
     });
 }
