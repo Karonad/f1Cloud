@@ -2,22 +2,19 @@
 
 let express = require('express');
 var cors = require('cors');
-const { resolve } = require('path'),
-    {MongoClient} = require('mongodb'),
-    bodyParser = require('body-parser');
 global.fetch = require('node-fetch');
 
 
 //set up variable for express and mongoose
 let app = express(),
-    port = 3001,
-    mongoose = require('mongoose');
+    port = 3001;
 const option = {
     socketTimeoutMS: 30000,
     keepAlive: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
-    };
+};
+
 
 //config cors
 var corsOptions = {
@@ -31,21 +28,27 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-
-
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
+//Load models
+let Test = require('./server/api/models/testModel');
+let Drivers = require('./server/api/models/driversModel');
+let Signin = require('./server/api/models/signModel');
 
 //importing routes
+let testRoutes = require('./server/api/routes/testRoutes');
+let driversRoutes = require('./server/api/routes/driversRoutes');
+let signRoutes = require('./server/api/routes/signRoutes');
 let laMetricRoutes = require('./server/api/routes/laMetricRoutes');
+
+testRoutes(app);
+driversRoutes(app);
+signRoutes(app);
 laMetricRoutes(app);
 
 
-app.use(function(req, res) {
+
+app.use(function (req, res) {
     res.status(404).send({ url: req.originalUrl + ' is not implemented' })
 });
 
 app.listen(process.env.PORT || port);
-console.log('Morphee : RESTful API server started on: ' + port);
+console.log('F1 : RESTful API server started on: ' + port);
